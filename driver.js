@@ -18,7 +18,7 @@ tm.execute("s0");
 */
 
 
-tm = TuringMachineBuilder.parse("fixtures/tm1.txt");
+tm = TuringMachineBuilder.parse("fixtures/tm2.txt");
 
 tm.execute();
 
