@@ -23,6 +23,10 @@ class Tape{
      */
     write(v){
         this.values[this.curr] = v;
+
+        if(this.curr === this.values.length - 1){
+            this.values.push("#")
+        }
     }
 
     left(){

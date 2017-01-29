@@ -11,6 +11,7 @@ class TuringMachine{
     constructor(){
         this.states = {};
         this.tape = new Tape(); // TODO: make a new tape object here.
+        this.start = null;
     }
 
     /**
@@ -19,10 +20,10 @@ class TuringMachine{
      *
      * @return {Boolean} - true if successfully added, false otherwise
      */
-    addState(S){
-        if(!this.states[S.name]){
+    addState(name, action, relation){
+        if(!this.states[name]){
             // not already in states list
-            this.states[S.name] = S;
+            this.states[name] = new State(name, action, relation);
             return true;
         }else{
             return false;
@@ -40,18 +41,33 @@ class TuringMachine{
 
     execute(S){
 
-        console.log(this.tape.toString());
+        if(S === undefined) {
+            S = this.start;
+        }
+
+
 
         if(!S){
             return null;
         }else{
 
             S = this.states[S];
+            console.log(S.name, this.tape.toString());
 
             this.tape.doAction(S.action);
 
             return this.execute(S.next[this.tape.read()]);
         }
+    }
+
+    /**
+     * Allows the values on the tape to be set
+     * @param pos
+     * @param vals
+     */
+    setTape(pos, vals){
+        this.tape.curr = pos;
+        this.tape.values = vals;
     }
 
     /**

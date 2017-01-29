@@ -4,7 +4,8 @@
 
 var TuringMachine = require("./TuringMachine").TuringMachine;
 var State = require("./State").State;
-
+var TuringMachineBuilder = require("./TuringMachineBuilder");
+/*
 var tm = new TuringMachine();
 
 tm.addState(new State("s0", "R", {"#" : "s1", "1" : "s1", "0" : "s1"}));
@@ -14,3 +15,10 @@ tm.addState(new State("s2", "R", {"#" : null, "1" : null, "0" : null}));
 console.log(tm.toString());
 
 tm.execute("s0");
+*/
+
+
+tm = TuringMachineBuilder.parse("fixtures/tm1.txt");
+
+tm.execute();
+
