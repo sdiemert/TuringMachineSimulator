@@ -4,12 +4,8 @@
  */
 
 var TuringMachine = require("./TuringMachine").TuringMachine;
-var fs = require("fs");
 
-function parse(f){
-
-    var S = fs.readFileSync(f, 'utf-8');
-
+function parse(S){
     S = S.toUpperCase(); // first cast everything to upper case to avoid confusion.
 
     S = S.split("\n");
@@ -87,6 +83,17 @@ function parse(f){
 
     return tm;
 
+}
+
+function parseFile(f){
+
+    /*var fs = require("fs");
+
+    var S = fs.readFileSync(f, 'utf-8');
+
+    */
+
+    return this.parse(S);
 }
 
 

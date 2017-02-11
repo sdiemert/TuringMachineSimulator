@@ -3,11 +3,12 @@
  * Created by sdiemert on 2017-01-28.
  */
 
+var defaultVals = ['/', "#"];
+
 class Tape{
 
     constructor(){
-        this.values = ["/", "#"];
-        this.curr = 1;
+        this.reset();
     }
 
     /**
@@ -60,15 +61,24 @@ class Tape{
     }
 
     /**
+     * Resets the tape
+     */
+    reset(){
+        this.values = [];
+        for(var i = 0; i < defaultVals.length; i++){
+            this.values.push(defaultVals[i]);
+        }
+        this.curr = 1;
+    }
+
+    /**
      * @returns {string}
      */
     toString(){
         var S = this.curr +" -- ";
 
         for (var v in this.values){
-
             S += " " + this.values[v];
-
         }
 
         return S

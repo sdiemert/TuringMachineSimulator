@@ -2,9 +2,9 @@
  * Created by sdiemert on 2017-01-28.
  */
 
-var TuringMachine = require("./TuringMachine").TuringMachine;
-var State = require("./State").State;
-var TuringMachineBuilder = require("./TuringMachineBuilder");
+//var TuringMachine = require("./TuringMachine").TuringMachine;
+//var State = require("./State").State;
+//var TuringMachineBuilder = require("./TuringMachineBuilder");
 /*
 var tm = new TuringMachine();
 
@@ -18,7 +18,7 @@ tm.execute("s0");
 */
 
 
-tm = TuringMachineBuilder.parse("fixtures/tm2.txt");
+//tm = TuringMachineBuilder.parse("fixtures/tm2.txt");
 
-tm.execute();
+//tm.execute();
 

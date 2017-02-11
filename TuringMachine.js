@@ -20,13 +20,20 @@ class TuringMachine{
      *
      * @return {Boolean} - true if successfully added, false otherwise
      */
-    addState(name, action, relation){
+    addState(S){
+        var name = S.name;
+        var action = S.action;
+        var relation = S.relation;
+
+        console.log("adding state", name);
+
         if(!this.states[name]){
             // not already in states list
-            this.states[name] = new State(name, action, relation);
-            return true;
+            this.states[name] = S;
+
+            return S;
         }else{
-            return false;
+            return null;
         }
     }
 
@@ -39,24 +46,21 @@ class TuringMachine{
     }
 
 
-    execute(S){
-
-        if(S === undefined) {
-            S = this.start;
-        }
-
-
+    execute(S, viewCallback){
 
         if(!S){
             return null;
         }else{
 
             S = this.states[S];
-            console.log(S.name, this.tape.toString());
 
             this.tape.doAction(S.action);
 
-            return this.execute(S.next[this.tape.read()]);
+            viewCallback(S.name, this);
+
+            //console.log(this.tape.toString());
+
+            return this.execute(S.next[this.tape.read()], viewCallback);
         }
     }
 
@@ -85,6 +89,13 @@ class TuringMachine{
 
         return ret;
 
+    }
+
+    /**
+     * Resets the turing machine
+     */
+    reset(){
+        this.tape.reset();
     }
 
 }

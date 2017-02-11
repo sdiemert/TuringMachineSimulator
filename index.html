@@ -3,15 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <title>Turing Machine Simulator</title>
+
+    <link rel="stylesheet" href="assets/skeleton.css"/>
+
+    <script src="assets/jquery.min.js"></script>
+    <script src="assets/require1k.min.js" data-main="./index"></script>
+
 </head>
 <body>
-    <script src="Tape.js" type="text/javascript"></script>
-    <script src="State.js" type="text/javascript"></script>
-    <script src="TuringMachine.js" type="text/javascript"></script>
-    <script src="TuringMachineBuilder.js" type="text/javascript"></script>
 
 
-    <script src="index.js" type="text/javascript"></script>
+    <div class="container">
 
+        <div class="row">
+            <div class="twelve columns">
+                <div id="sim-wrapper"></div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
+
+            <div class="six columns u-full-width">
+                <table id="input-table">
+                    <thead>
+                        <tr>
+                            <th>State</th>
+                            <th>Write</th>
+                            <th>Move</th>
+                            <th>1</th>
+                            <th>0</th>
+                            <th>#</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Foo</td><td>Bar</td></tr>
+                    </tbody>
+                </table>
+
+                <button id="execute-button" class="button-primary">Execute</button>
+            </div>
+            <div class="six columns">
+                <form>
+                    <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>
