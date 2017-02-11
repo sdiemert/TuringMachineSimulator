@@ -56,7 +56,7 @@ class TuringMachine{
 
             this.tape.doAction(S.action);
 
-            viewCallback(S.name, this);
+            viewCallback(S.name);
 
             //console.log(this.tape.toString());
 
@@ -96,6 +96,14 @@ class TuringMachine{
      */
     reset(){
         this.tape.reset();
+    }
+
+    stateAsText(){
+        return this.tape.toString();
+    }
+
+    getStartState(){
+        return Object.keys(this.states)[0];
     }
 
 }
