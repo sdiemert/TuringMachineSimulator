@@ -1,5 +1,6 @@
 .input-row input {
     width : 45px;
+    margin-bottom: 2px;
 }
 
 .input-row td,
@@ -12,6 +13,7 @@
     background-color: #ff4c4f;
     color:white;
     border: 1px solid pink;
+    margin-bottom: 2px;
 }
 
 .input-row button:hover{
@@ -23,6 +25,6 @@
 }
 
 #tape-input{
-    width : 350px;
+    width : 95%;
     font-family : 'Courier New';
 }

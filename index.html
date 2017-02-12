@@ -34,30 +34,32 @@
 
                 <h5>Machine:</h5>
 
-                <table id="input-table">
-                    <thead>
-                        <tr>
-                            <th>State</th>
-                            <th>Write</th>
-                            <th>Move</th>
-                            <th>1</th>
-                            <th>0</th>
-                            <th>#</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody id="input-table-body">
-                        <tr id="input-row-0" class="input-row">
-                            <td><input type="text" id="input-id-0"/></td>
-                            <td><input type="text" id="input-write-0"/></td>
-                            <td><input type="text" id="input-move-0"/></td>
-                            <td><input type="text" id="input-next-one-0"/></td>
-                            <td><input type="text" id="input-next-zero-0"/></td>
-                            <td><input type="text" id="input-next-null-0"/></td>
-                            <td><button>remove</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div style="overflow: scroll; max-height:400px">
+                    <table id="input-table">
+                        <thead>
+                            <tr>
+                                <th>State</th>
+                                <th>Write</th>
+                                <th>Move</th>
+                                <th>1</th>
+                                <th>0</th>
+                                <th>#</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="input-table-body">
+                            <tr id="input-row-0" class="input-row">
+                                <td><input type="text" id="input-id-0"/></td>
+                                <td><input type="text" id="input-write-0"/></td>
+                                <td><input type="text" id="input-move-0"/></td>
+                                <td><input type="text" id="input-next-one-0"/></td>
+                                <td><input type="text" id="input-next-zero-0"/></td>
+                                <td><input type="text" id="input-next-null-0"/></td>
+                                <td><button>remove</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <button id="execute-button" class="button-primary">Execute</button>
             </div>

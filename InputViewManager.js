@@ -72,7 +72,7 @@ class InputViewManager{
                 );
         }
 
-        R.append($("<button>").text("remove"));
+        R.append($("<td>").append($("<button>").text("remove")));
 
         $("#input-table").find("tbody").append(R);
 
@@ -159,7 +159,9 @@ class InputViewManager{
 
         switch(field) {
             case "input-id":
-                // nothing there ... any id is valid.
+                if(this.getStateNames().indexOf(s) >= 0){
+                    return false; //cannot have same id as another.
+                }
                 break;
             case "input-write":
                 if(s.toUpperCase() !== "0" && s.toUpperCase() !== "1" && s.toUpperCase() !== "#"){
@@ -191,6 +193,10 @@ class InputViewManager{
         }
 
         return true;
+    }
+
+    removeHandler(){
+
     }
 
     static addInputError(id){
