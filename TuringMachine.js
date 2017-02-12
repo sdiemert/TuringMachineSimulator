@@ -22,8 +22,6 @@ class TuringMachine{
      */
     addState(S){
         var name = S.name;
-        var action = S.action;
-        var relation = S.relation;
 
         console.log("adding state", name);
 
@@ -54,7 +52,13 @@ class TuringMachine{
 
             S = this.states[S];
 
-            this.tape.doAction(S.action);
+            if(S.write === "H"){
+                return;
+            }
+
+            this.tape.doAction(S.write);
+
+            this.tape.doAction(S.move);
 
             viewCallback(S.name);
 
@@ -104,6 +108,23 @@ class TuringMachine{
 
     getStartState(){
         return Object.keys(this.states)[0];
+    }
+
+    updateState(state, field, value){
+
+        if(field === "input-id"){
+            this.addState(new State(value, "","",{}));
+        }else if(field === "input-write"){
+            this.states[state].write = value;
+        }else if(field === "input-move"){
+            this.states[state].move = value;
+        }else if(field === "input-next-one"){
+            this.states[state].next["1"] = value;
+        }else if(field === "input-next-zero"){
+            this.states[state].next["0"] = value;
+        }else if(field === "input-next-null"){
+            this.states[state].next["#"] = value;
+        }
     }
 
 }

@@ -1,0 +1,23 @@
+.input-row input {
+    width : 45px;
+}
+
+.input-row td,
+.input-table th {
+    padding : 5px;
+}
+
+.input-row button{
+    padding: 0px 5px;
+    background-color: #ff4c4f;
+    color:white;
+    border: 1px solid pink;
+}
+
+.input-row button:hover{
+    background-color: #ff191e;
+}
+
+.input-error{
+    border:1px solid red !important;
+}

@@ -9,17 +9,15 @@ class State{
      * Creates a new state object
      *
      * @param name {string}
-     * @param action {string}
+     * @param move {string} L or R
+     * @param write {string} 1, O, or #
      * @param next {object} - the next relation, keys are symbols, values are next state id's
      */
-    constructor(name, action, next){
-
-        if(!name || !action || !next){
-            throw Error("Invalid name, action, or next relation for state");
-        }
+    constructor(name, move, write, next){
 
         this.name = name;
-        this.action = action;
+        this.move = move;
+        this.write = write;
         this.next = next;
 
     }
@@ -28,7 +26,7 @@ class State{
      * @return {string}
      */
     toString(){
-        var ret = "{" + this.name +" -- "+this.action+ " : " ;
+        var ret = "{" + this.name +" -- "+this.move+ "," + this.write+ " : " ;
 
         for(var n in this.next){
             ret += n + ":" +this.next[n]+ ", ";

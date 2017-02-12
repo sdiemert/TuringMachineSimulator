@@ -53,6 +53,8 @@ class Tape{
             this.left();
         }else if(A == "R") {
             this.right();
+        }else if(A == "H") {
+            // do nothing...
         }else if(A === "#" || A === "1" || A === "0") {
             this.write(A)
         }else {

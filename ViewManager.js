@@ -1,7 +1,9 @@
-"use strict"
+"use strict";
 /**
  * Created by sdiemert on 2017-02-10.
  */
+
+var InputViewManager = require("./InputViewManager").InputViewManager;
 
 class ViewManager{
 
@@ -13,6 +15,8 @@ class ViewManager{
         this.executeButton = $("#execute-button");
 
         this.doBindings();
+
+        this.inputManger = new InputViewManager((x,y,z) => this.inputUpdateHandler(x,y,z));
     }
 
 
@@ -62,6 +66,10 @@ class ViewManager{
      */
     addTextOutput(s){
         this.textOut.append(s + "\n");
+    }
+
+    inputUpdateHandler(state, input, value){
+        this.control.updateModel(state, input, value);
     }
 
 }

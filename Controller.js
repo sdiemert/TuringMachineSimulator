@@ -13,6 +13,10 @@ class Controller{
         this.model = null;
     }
 
+    /**
+     * Executes the model and causes changes, when the model
+     * requests, to be reflected in the view.
+     */
     execute(){
 
         this.view.reset();
@@ -22,13 +26,33 @@ class Controller{
     }
 
 
+    /**
+     * Halts the execution of the model and puts
+     * everything back in the initial state so that it
+     * can run again - does not effect any of the model's
+     * actual "programming".
+     */
+    reset(){
+        this.view.reset();
+        this.model.reset();
+    }
+
+
+    /**
+     * Callback used to reflect changes in the view
+     * after each "step" the model takes.
+     *
+     * @param s
+     * @private
+     */
     _modelCallback(s){
         this.view.addTextOutput(s + " " + this.model.stateAsText());
     }
 
-    reset(){
-        this.view.reset();
-        this.model.reset();
+    updateModel(state, input, value){
+        this.model.updateState(state, input, value);
+
+        console.log(this.model.toString());
     }
 
 }
