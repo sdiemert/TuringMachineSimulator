@@ -52,17 +52,20 @@ class TuringMachine{
 
             S = this.states[S];
 
-            if(S.write === "H"){
-                return;
-            }
-
             this.tape.doAction(S.write);
 
-            this.tape.doAction(S.move);
-
             viewCallback(S.name);
+            console.log(S.name, this.tape.toString());
 
-            //console.log(this.tape.toString());
+            if(S.move === "H"){
+                console.log("halting");
+                return;
+            }else{
+                console.log("moving: ", S.move);
+                this.tape.doAction(S.move);
+            }
+
+            S.next[this.tape.read()];
 
             return this.execute(S.next[this.tape.read()], viewCallback);
         }
@@ -99,6 +102,11 @@ class TuringMachine{
      * Resets the turing machine
      */
     reset(){
+        this.tape.reset();
+    }
+
+    clear(){
+        this.tape.clear();
         this.tape.reset();
     }
 

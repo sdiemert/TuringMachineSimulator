@@ -13,10 +13,11 @@ class ViewManager{
         // id's in view
         this.textOut = $("#text-output");
         this.executeButton = $("#execute-button");
+        this.tapeInput = $("#tape-input");
 
         this.doBindings();
 
-        this.inputManger = new InputViewManager((x,y,z) => this.inputUpdateHandler(x,y,z));
+        this.inputManger = new InputViewManager();
     }
 
 
@@ -44,6 +45,7 @@ class ViewManager{
      */
     doBindings(){
         this.executeButton.click(() => this.executeButtonHandler());
+        this.tapeInput.blur(() => this.tapeInputHandler());
     }
 
     /**
@@ -56,8 +58,23 @@ class ViewManager{
 
         console.log("Execute Clicked!");
 
+        this.inputManger.digestMachine((x,y,z) => this.inputUpdateHandler(x,y,z));
+
         this.control.reset();
         this.control.execute();
+    }
+
+    tapeInputHandler(){
+
+        var v = this.tapeInput.val();
+
+        this.tapeInput.removeClass("input-error");
+
+        if(this.validTape(v)) {
+            this.control.updateTape(v);
+        }else{
+            this.tapeInput.addClass("input-error");
+        }
     }
 
     /**
@@ -70,6 +87,16 @@ class ViewManager{
 
     inputUpdateHandler(state, input, value){
         this.control.updateModel(state, input, value);
+    }
+
+
+    validTape(s){
+        for(var i = 0 ; i < s.length; i++){
+            if(s[i] !== "1" && s[i] !== "0" && s[i] !== "#"){
+                return false;
+            }
+        }
+        return true;
     }
 
 }

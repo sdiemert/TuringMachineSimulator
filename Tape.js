@@ -8,7 +8,7 @@ var defaultVals = ['/', "#"];
 class Tape{
 
     constructor(){
-        this.reset();
+        this.clear();
     }
 
     /**
@@ -65,11 +65,15 @@ class Tape{
     /**
      * Resets the tape
      */
-    reset(){
+    clear(){
         this.values = [];
         for(var i = 0; i < defaultVals.length; i++){
             this.values.push(defaultVals[i]);
         }
+        this.curr = 1;
+    }
+
+    reset(){
         this.curr = 1;
     }
 
@@ -80,10 +84,31 @@ class Tape{
         var S = this.curr +" -- ";
 
         for (var v in this.values){
-            S += " " + this.values[v];
+
+            S += " ";
+
+            if(v == this.curr){
+                S += "[";
+            }
+
+            S += this.values[v];
+            if(v == this.curr){
+                S += "]";
+            }
+
         }
 
         return S
+    }
+
+    setValues(T){
+        this.clear();
+        for(var i = 0; i < T.length; i++){
+            this.values.push(T[i]);
+        }
+        this.curr = 1;
+
+        this.values.push("#");
     }
 
 }

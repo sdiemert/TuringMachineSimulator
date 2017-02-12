@@ -12,11 +12,9 @@ class InputViewManager{
      * @param onChangeCallback {function} called when the Input element is
      *  changed and needs to update the model.
      */
-    constructor(onChangeCallback){
+    constructor(){
 
         this.rowIds = [0];
-
-        this.onChangeCallback = onChangeCallback;
 
         this.doBindings();
     }
@@ -99,10 +97,19 @@ class InputViewManager{
         this.constructor.removeInputError(elemId);
 
         this.reEvaluateErrors();
+    }
 
-        if(this.validateInput(s, inputName)){
-            var state = $("#input-id-" + rowId).val();
-            this.onChangeCallback(state, inputName, s);
+    digestMachine(cb){
+        for(var i=0; i < this.rowIds.length - 1; i++){
+            for(var j=0; j < INPUT_FIELD_IDS.length; j++){
+                var e = $("#" + INPUT_FIELD_IDS[j] + "-" + this.rowIds[i]);
+                if(this.validateInput(e.val(), INPUT_FIELD_IDS[j])){
+                    var state = $("#input-id-" + this.rowIds[i]).val();
+                    cb(state, INPUT_FIELD_IDS[j], e.val());
+                }else{
+
+                }
+            }
         }
     }
 
@@ -121,7 +128,7 @@ class InputViewManager{
             for(var j=0; j < INPUT_FIELD_IDS.length; j++){
                 var e = $("#" + INPUT_FIELD_IDS[j] + "-" + this.rowIds[i]);
                 if(!this.validateInput(e.val(), INPUT_FIELD_IDS[j])){
-                    f =false;
+                    f = false;
                 }
             }
         }

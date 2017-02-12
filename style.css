@@ -21,3 +21,8 @@
 .input-error{
     border:1px solid red !important;
 }
+
+#tape-input{
+    width : 350px;
+    font-family : 'Courier New';
+}

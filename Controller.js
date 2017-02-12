@@ -55,6 +55,10 @@ class Controller{
         console.log(this.model.toString());
     }
 
+    updateTape(t){
+        this.model.tape.setValues(t);
+    }
+
 }
 
 module.exports = {Controller : Controller};
