@@ -29,13 +29,21 @@ class InputViewManager{
      */
     doBindings(){
 
-        for(var i=0; i < this.rowIds.length; i++){
+        for(var i=0; i < this.rowIds.length-1; i++){
             for(var j=0; j < INPUT_FIELD_IDS.length; j++){
                 (function(i,j, that) {
                     $("#" + INPUT_FIELD_IDS[j] + "-" + that.rowIds[i]).blur(
                         () => that.inputHandler(that.rowIds[i], INPUT_FIELD_IDS[j]));
                 })(i,j, this);
             }
+
+            (function (x, that){
+
+                console.log("bindng click", x);
+
+                $("#input-row-" + that.rowIds[x]+" button").click(() => that.removeHandler(that.rowIds[x]))
+            })(i, this);
+
         }
 
         var lastRow = this.rowIds[this.rowIds.length - 1];
@@ -44,16 +52,16 @@ class InputViewManager{
             (function(that){
                 $("#"+INPUT_FIELD_IDS[j]+"-"+lastRow).blur(() => that.addNewRow());
             })(this);
-
         }
 
     }
 
     removeBindings(){
-        for(var i=0; i < this.rowIds.length; i++){
+        for(var i=0; i < this.rowIds.length - 1; i++){
             for(var j=0; j < INPUT_FIELD_IDS.length; j++){
                 $("#"+INPUT_FIELD_IDS[j]+"-"+this.rowIds[i]).off("blur");
             }
+            $("#input-row-"+this.rowIds[i]+ " button").off("click");
         }
     }
 
@@ -61,7 +69,7 @@ class InputViewManager{
         var n = this.rowIds[this.rowIds.length - 1] + 1;
         this.rowIds.push(n);
 
-        var R = $("<tr>").attr("class", "input-row");
+        var R = $("<tr>").attr("class", "input-row").attr("id", "input-row-"+n);
 
         for(var i = 0 ; i < INPUT_FIELD_IDS.length; i++) {
                 R.append($("<td>")
@@ -195,8 +203,14 @@ class InputViewManager{
         return true;
     }
 
-    removeHandler(){
+    removeHandler(rowId){
+        var i = this.rowIds.indexOf(rowId);
 
+        console.log("remove", rowId, i);
+        if(i > -1){
+            this.rowIds.splice(i, 1);
+            $("#input-row-"+rowId).remove();
+        }
     }
 
     static addInputError(id){
