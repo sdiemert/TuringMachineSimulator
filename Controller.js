@@ -21,6 +21,7 @@ class Controller{
 
         this.view.reset();
         this.model.reset();
+
         this.model.execute(this.model.getStartState(), (n) => this._modelCallback(n));
 
     }
@@ -46,13 +47,14 @@ class Controller{
      * @private
      */
     _modelCallback(s){
-        this.view.addTextOutput(s + " " + this.model.stateAsText());
+        this.view.addTextOutput(s + "\t" + this.model.stateAsText());
     }
 
     updateModel(state, input, value){
-        this.model.updateState(state, input, value);
 
-        console.log(this.model.toString());
+        console.log(state, input, value);
+
+        this.model.updateState(state, input, value);
     }
 
     updateTape(t){

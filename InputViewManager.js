@@ -114,8 +114,6 @@ class InputViewManager{
                 if(this.validateInput(e.val(), INPUT_FIELD_IDS[j])){
                     var state = $("#input-id-" + this.rowIds[i]).val();
                     cb(state, INPUT_FIELD_IDS[j], e.val());
-                }else{
-
                 }
             }
         }
@@ -167,9 +165,7 @@ class InputViewManager{
 
         switch(field) {
             case "input-id":
-                if(this.getStateNames().indexOf(s) >= 0){
-                    return false; //cannot have same id as another.
-                }
+                // nothing...
                 break;
             case "input-write":
                 if(s.toUpperCase() !== "0" && s.toUpperCase() !== "1" && s.toUpperCase() !== "#"){

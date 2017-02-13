@@ -120,6 +120,9 @@ class TuringMachine{
 
     updateState(state, field, value){
 
+        console.log(this.states);
+        console.log(state, field, value);
+
         if(field === "input-id"){
             this.addState(new State(value, "","",{}));
         }else if(field === "input-write"){
