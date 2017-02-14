@@ -3,6 +3,10 @@
     margin-bottom: 2px;
 }
 
+.input-row input.next {
+    width : 100%;
+}
+
 .input-row td,
 .input-table th {
     padding : 5px;

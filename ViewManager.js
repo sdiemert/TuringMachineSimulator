@@ -99,6 +99,19 @@ class ViewManager{
         return true;
     }
 
+    showModel(M){
+        this.inputManger.renderModel(M);
+    }
+
+    getTape(){
+        var t = this.tapeInput.val();
+        if(this.validTape(t)){
+            return t;
+        }else{
+            return null;
+        }
+    }
+
 }
 
 module.exports = {ViewManager : ViewManager};

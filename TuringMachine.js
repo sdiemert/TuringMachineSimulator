@@ -65,9 +65,7 @@ class TuringMachine{
                 this.tape.doAction(S.move);
             }
 
-            S.next[this.tape.read()];
-
-            return this.execute(S.next[this.tape.read()], viewCallback);
+            return this.execute(S.getNext(this.tape.read()), viewCallback);
         }
     }
 

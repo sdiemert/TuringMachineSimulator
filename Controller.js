@@ -22,6 +22,8 @@ class Controller{
         this.view.reset();
         this.model.reset();
 
+        this.updateTape(this.view.getTape());
+
         this.model.execute(this.model.getStartState(), (n) => this._modelCallback(n));
 
     }
@@ -59,6 +61,10 @@ class Controller{
 
     updateTape(t){
         this.model.tape.setValues(t);
+    }
+
+    showModel(){
+        this.view.showModel(this.model);
     }
 
 }

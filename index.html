@@ -26,7 +26,7 @@
 
         <div class="row">
 
-            <div class="six columns u-full-width">
+            <div class="twelve columns u-full-width">
 
                 <h5>Tape: </h5>
 
@@ -52,9 +52,9 @@
                                 <td><input type="text" id="input-id-0"/></td>
                                 <td><input type="text" id="input-write-0"/></td>
                                 <td><input type="text" id="input-move-0"/></td>
-                                <td><input type="text" id="input-next-one-0"/></td>
-                                <td><input type="text" id="input-next-zero-0"/></td>
-                                <td><input type="text" id="input-next-null-0"/></td>
+                                <td><input class="next" type="text" id="input-next-one-0"/></td>
+                                <td><input class="next" type="text" id="input-next-zero-0"/></td>
+                                <td><input class="next" type="text" id="input-next-null-0"/></td>
                                 <td><button>remove</button></td>
                             </tr>
                         </tbody>
@@ -63,12 +63,13 @@
 
                 <button id="execute-button" class="button-primary">Execute</button>
             </div>
-            <div class="six columns">
-                <form>
-                    <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
-                </form>
+            <div class="row">
+                <div class="twelve columns">
+                    <form>
+                        <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
+                    </form>
+                </div>
             </div>
-
         </div>
     </div>
 </body>

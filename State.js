@@ -37,6 +37,37 @@ class State{
         return ret;
     }
 
+    /**
+     * Gets the next state - uses next relation
+     * @param n {string} the input into the next relation
+     */
+    getNext(n){
+        return this.selectWithProbability(this.next[n]);
+    }
+
+    selectWithProbability(R){
+
+        // R is an object with {"s1": p1, "s2":p2,...}
+        // we know that sum pi will be = 1.0
+
+        // X is a random variable that may take
+        // values s1, s2, ... si with probabilities
+        // p1, p2, ..., pi
+
+        var r = Math.random();
+
+        var s = 0;
+
+        for(var k in R){
+            if(!R.hasOwnProperty(k)) continue;
+
+            if(r >= s && r < s + R[k]){
+                return k;
+            }
+
+            s += R[k];
+        }
+    }
 }
 
 module.exports = {State : State};
