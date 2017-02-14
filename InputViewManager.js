@@ -302,6 +302,15 @@ class InputViewManager{
         $(id).removeClass("input-error");
     }
 
+    nextAsString(N){
+        var s = "";
+        for(var k in N){
+            if(!N.hasOwnProperty(k)) continue;
+            s += k + "(" + N[k].toFixed(1)+"),";
+        }
+        return s.substring(0, s.length-1);
+    }
+
     /**
      *
      * @param n {number}
@@ -311,9 +320,9 @@ class InputViewManager{
         $("#input-id-"+n).val(S.name);
         $("#input-write-"+n).val(S.write);
         $("#input-move-"+n).val(S.move);
-        $("#input-next-one-"+n).val(S.next["1"]);
-        $("#input-next-zero-"+n).val(S.next["0"]);
-        $("#input-next-null-"+n).val(S.next["#"]);
+        $("#input-next-one-"+n).val(this.nextAsString(S.next["1"]));
+        $("#input-next-zero-"+n).val(this.nextAsString(S.next["0"]));
+        $("#input-next-null-"+n).val(this.nextAsString(S.next["#"]));
     }
 
     renderModel(M){
@@ -325,8 +334,6 @@ class InputViewManager{
 
         for(var i in M.states){
             n = this.addNewRow();
-
-            console.log(i, n);
 
             this.addNewState(n, M.states[i]);
         }
