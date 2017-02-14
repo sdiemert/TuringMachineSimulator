@@ -17,14 +17,18 @@ class Controller{
      * Executes the model and causes changes, when the model
      * requests, to be reflected in the view.
      */
-    execute(){
+    execute(ss){
 
         this.view.reset();
         this.model.reset();
 
+        this.view.showModel(this.model);
+
         this.updateTape(this.view.getTape());
 
-        this.model.execute(this.model.getStartState(), (n) => this._modelCallback(n));
+        this.model.start = ss;
+
+        this.model.execute((n) => this._modelCallback(n));
 
     }
 
@@ -53,9 +57,6 @@ class Controller{
     }
 
     updateModel(state, input, value){
-
-        console.log(state, input, value);
-
         this.model.updateState(state, input, value);
     }
 

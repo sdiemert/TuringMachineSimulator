@@ -10,9 +10,23 @@ var ViewManager = require("./ViewManager").ViewManager;
 
 var tm = new TuringMachine();
 
-var s0 = tm.addState(new State("s0", "R", "1", {"#" : {"s1" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s1" : 1.0}}));
-var s1 = tm.addState(new State("s1", "R", "1",{"#" : {"s2" : 1.0}, "1" : {"s2" : 1.0}, "0" : {"s2" : 1.0}}));
-var s2 = tm.addState(new State("s2", "H", "1",{"#" : null, "1" : null, "0" : null}));
+// the current program determines the parity of a binary number
+// that is given on the tape - assumes tape is initially of form: # X X ... X X # 0 #
+
+var ss = tm.addState(new State("ss", "R", "#", {"#" : {"sh" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s0" : 1.0}}));
+
+var s0 = tm.addState(new State("s0", "R", "1", {"#" : {"se0" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s0" : 1.0}}));
+var s1 = tm.addState(new State("s1", "R", "1", {"#" : {"se1" : 1.0}, "1" : {"s0" : 1.0}, "0" : {"s1" : 1.0}}));
+
+var se0 = tm.addState(new State("se0", "R", "#", {"#" : {"sh0" : 1.0}, "1" : {"sh0" : 1.0}, "0" : {"sh0" : 1.0}}));
+var se1 = tm.addState(new State("se1", "R", "#", {"#" : {"sh1" : 1.0}, "1" : {"sh1" : 1.0}, "0" : {"sh1" : 1.0}}));
+
+var sh0 = tm.addState(new State("sh0", "R", "0", {"#" : {"sh" : 1.0}, "1" : {"sh" : 1.0}, "0" : {"sh" : 1.0}}));
+var sh1 = tm.addState(new State("sh1", "R", "1", {"#" : {"sh" : 1.0}, "1" : {"sh" : 1.0}, "0" : {"sh" : 1.0}}));
+
+var sh = tm.addState(new State("sh", "H", "#", {"#" : null, "1" : null, "0" : null}));
+
+tm.start = "ss";
 
 var C = new Controller();
 

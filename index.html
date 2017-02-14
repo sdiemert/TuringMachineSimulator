@@ -25,16 +25,21 @@
         <hr>
 
         <div class="row">
-
-            <div class="twelve columns u-full-width">
-
+            <div class="ten columns offset-by-one">
                 <h5>Tape: </h5>
 
                 <input type="text" id="tape-input"/>
 
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="ten columns offset-by-one">
+
                 <h5>Machine:</h5>
 
-                <div style="overflow: scroll; max-height:400px">
+                <div id="table-input-wrapper" style="overflow: scroll; max-height:400px; display:block;">
                     <table id="input-table">
                         <thead>
                             <tr>
@@ -60,11 +65,23 @@
                         </tbody>
                     </table>
                 </div>
-
-                <button id="execute-button" class="button-primary">Execute</button>
             </div>
+
             <div class="row">
-                <div class="twelve columns">
+                <div class="two columns offset-by-one">
+                    <button id="execute-button" class="button-primary">Execute</button>
+                </div>
+                <div class="six columns">
+                    <form>
+
+                        <span style="font-weight: bold">Start: &nbsp;</span> <input type="text" id="start-state" />
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="ten columns offset-by-one">
                     <form>
                         <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
                     </form>

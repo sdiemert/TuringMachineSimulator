@@ -43,8 +43,11 @@ class TuringMachine{
         delete this.states[k];
     }
 
+    execute(vCb){
+        this._execute(this.start, vCb);
+    }
 
-    execute(S, viewCallback){
+    _execute(S, viewCallback){
 
         if(!S){
             return null;
@@ -65,7 +68,7 @@ class TuringMachine{
                 this.tape.doAction(S.move);
             }
 
-            return this.execute(S.getNext(this.tape.read()), viewCallback);
+            return this._execute(S.getNext(this.tape.read()), viewCallback);
         }
     }
 

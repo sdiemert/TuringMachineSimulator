@@ -26,13 +26,24 @@ class State{
      * @return {string}
      */
     toString(){
-        var ret = "{" + this.name +" -- "+this.move+ "," + this.write+ " : " ;
+        var ret = this.name +"\t"+this.write+ "\t" + this.move ;
+        var syms = ["1","0","#"];
+        for(var x in syms){
 
-        for(var n in this.next){
-            ret += n + ":" +this.next[n]+ ", ";
+            var n = syms[x];
+
+            if(!this.next[n]){
+                ret += "\t(null)"
+            }else{
+                ret += "\t(";
+                for(var s in this.next[n]){
+                    ret += "(" + s + "," + this.next[n][s].toFixed(1)+"),"
+                }
+                ret = ret.substring(0, ret.length-1);
+                ret += ")";
+            }
+
         }
-
-        ret += "}";
 
         return ret;
     }

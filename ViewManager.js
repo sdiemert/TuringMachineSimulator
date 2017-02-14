@@ -4,6 +4,7 @@
  */
 
 var InputViewManager = require("./InputViewManager").InputViewManager;
+var TextInputViewManager = require("./TextInputViewManager").TextInputViewManager;
 
 class ViewManager{
 
@@ -14,6 +15,7 @@ class ViewManager{
         this.textOut = $("#text-output");
         this.executeButton = $("#execute-button");
         this.tapeInput = $("#tape-input");
+        this.startInput = $("#start-state");
 
         this.doBindings();
 
@@ -61,7 +63,7 @@ class ViewManager{
         this.inputManger.digestMachine((x,y,z) => this.inputUpdateHandler(x,y,z));
 
         this.control.reset();
-        this.control.execute();
+        this.control.execute(this.startInput.val());
     }
 
     tapeInputHandler(){
@@ -101,6 +103,7 @@ class ViewManager{
 
     showModel(M){
         this.inputManger.renderModel(M);
+        this.startInput.val(M.start);
     }
 
     getTape(){
