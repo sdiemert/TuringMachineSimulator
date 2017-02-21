@@ -28,7 +28,7 @@ class Controller{
 
         this.model.start = ss;
 
-        this.model.execute((n) => this._modelCallback(n));
+        this.model.execute((n, cb) => this._modelCallback(n, cb));
 
     }
 
@@ -52,8 +52,11 @@ class Controller{
      * @param s
      * @private
      */
-    _modelCallback(s){
+    _modelCallback(s, cb){
         this.view.addTextOutput(s + "\t" + this.model.stateAsText());
+        this.view.showModel(this.model);
+
+        setTimeout(function(){cb();}, 400);
     }
 
     updateModel(state, input, value){

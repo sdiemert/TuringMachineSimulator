@@ -57,18 +57,23 @@ class TuringMachine{
 
             this.tape.doAction(S.write);
 
-            viewCallback(S.name);
-            console.log(S.name, this.tape.toString());
+            var that = this;
 
-            if(S.move === "H"){
-                console.log("halting");
-                return;
-            }else{
-                console.log("moving: ", S.move);
-                this.tape.doAction(S.move);
-            }
+            viewCallback(S.name, function(){
 
-            return this._execute(S.getNext(this.tape.read()), viewCallback);
+                console.log(S.name, that.tape.toString());
+
+                if(S.move === "H"){
+                    console.log("halting");
+                    return;
+                }else{
+                    console.log("moving: ", S.move);
+                    that.tape.doAction(S.move);
+                }
+
+                return that._execute(S.getNext(that.tape.read()), viewCallback);
+
+            });
         }
     }
 

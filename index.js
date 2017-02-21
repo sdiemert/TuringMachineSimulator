@@ -15,8 +15,8 @@ var tm = new TuringMachine();
 
 var ss = tm.addState(new State("ss", "R", "#", {"#" : {"sh" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s0" : 1.0}}));
 
-var s0 = tm.addState(new State("s0", "R", "1", {"#" : {"se0" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s0" : 1.0}}));
-var s1 = tm.addState(new State("s1", "R", "1", {"#" : {"se1" : 1.0}, "1" : {"s0" : 1.0}, "0" : {"s1" : 1.0}}));
+var s0 = tm.addState(new State("s0", "R", "0", {"#" : {"se0" : 1.0}, "1" : {"s1" : 1.0}, "0" : {"s0" : 1.0}}));
+var s1 = tm.addState(new State("s1", "R", "0", {"#" : {"se1" : 1.0}, "1" : {"s0" : 1.0}, "0" : {"s1" : 1.0}}));
 
 var se0 = tm.addState(new State("se0", "R", "#", {"#" : {"sh0" : 1.0}, "1" : {"sh0" : 1.0}, "0" : {"sh0" : 1.0}}));
 var se1 = tm.addState(new State("se1", "R", "#", {"#" : {"sh1" : 1.0}, "1" : {"sh1" : 1.0}, "0" : {"sh1" : 1.0}}));

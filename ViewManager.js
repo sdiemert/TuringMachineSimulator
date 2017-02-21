@@ -5,6 +5,7 @@
 
 var InputViewManager = require("./InputViewManager").InputViewManager;
 var TextInputViewManager = require("./TextInputViewManager").TextInputViewManager;
+var SimViewManager = require("./SimViewManager").SimViewManager;
 
 class ViewManager{
 
@@ -20,6 +21,7 @@ class ViewManager{
         this.doBindings();
 
         this.inputManger = new InputViewManager();
+        this.simManager = new SimViewManager("sim-wrapper");
     }
 
 
@@ -103,6 +105,7 @@ class ViewManager{
 
     showModel(M){
         this.inputManger.renderModel(M);
+        this.simManager.renderTape(M.tape);
         this.startInput.val(M.start);
     }
 
