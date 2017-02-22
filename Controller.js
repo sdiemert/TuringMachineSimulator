@@ -3,6 +3,8 @@
  * Created by sdiemert on 2017-02-10.
  */
 
+var TuringMachineBuilder = require("./TuringMachineBuilder").TuringMachineBuilder;
+
 class Controller{
 
     constructor(){
@@ -11,6 +13,8 @@ class Controller{
 
         /** @type {TuringMachine} */
         this.model = null;
+
+        this.modelBuilder = new TuringMachineBuilder();
     }
 
     /**
@@ -59,8 +63,11 @@ class Controller{
         setTimeout(function(){cb();}, 400);
     }
 
-    updateModel(state, input, value){
-        this.model.updateState(state, input, value);
+    updateModel(M){
+
+        console.log("Building new model", M);
+
+        this.model = this.modelBuilder.build(M);
     }
 
     updateTape(t){

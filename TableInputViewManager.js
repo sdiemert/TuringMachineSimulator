@@ -3,19 +3,19 @@
  * Created by sdiemert on 2017-02-12.
  */
 
+var InputViewManager = require("./InputManager").InputManager;
+
 var INPUT_FIELD_IDS = ["input-id", "input-write", "input-move", "input-next-one", "input-next-zero", "input-next-null"];
 
-class InputViewManager{
-
+class TableInputViewManager extends InputViewManager{
     /**
-     *
-     * @param onChangeCallback {function} called when the Input element is
-     *  changed and needs to update the model.
+     * Basic constructor
      */
     constructor(){
 
-        this.rowIds = [0];
+        super("table-input-wrapper")
 
+        this.rowIds = [0];
         this.doBindings();
     }
 
@@ -343,4 +343,4 @@ class InputViewManager{
 
 }
 
-module.exports = {InputViewManager : InputViewManager};
+module.exports = {TableInputViewManager : TableInputViewManager};

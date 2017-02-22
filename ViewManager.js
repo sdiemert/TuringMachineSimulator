@@ -3,7 +3,7 @@
  * Created by sdiemert on 2017-02-10.
  */
 
-var InputViewManager = require("./InputViewManager").InputViewManager;
+var TableInputViewManager = require("./TableInputViewManager").TableInputViewManager;
 var TextInputViewManager = require("./TextInputViewManager").TextInputViewManager;
 var SimViewManager = require("./SimViewManager").SimViewManager;
 
@@ -20,8 +20,12 @@ class ViewManager{
 
         this.doBindings();
 
-        this.inputManger = new InputViewManager();
-        this.simManager = new SimViewManager("sim-wrapper");
+        this.tableManager     = new TableInputViewManager();
+        this.simManager       = new SimViewManager("sim-wrapper");
+        this.textInputManager = new TextInputViewManager();
+
+        this.tableManager.hide();
+        this.textInputManager.show();
     }
 
 
@@ -62,7 +66,11 @@ class ViewManager{
 
         console.log("Execute Clicked!");
 
-        this.inputManger.digestMachine((x,y,z) => this.inputUpdateHandler(x,y,z));
+        if(this.tableManager.isVisible()){
+            this.tableManager.digestMachine((M) => this.inputUpdateHandler(M));
+        }else{
+            this.textInputManager.digestMachine((M) => this.inputUpdateHandler(M));
+        }
 
         this.control.reset();
         this.control.execute(this.startInput.val());
@@ -89,8 +97,8 @@ class ViewManager{
         this.textOut.append(s + "\n");
     }
 
-    inputUpdateHandler(state, input, value){
-        this.control.updateModel(state, input, value);
+    inputUpdateHandler(M){
+        this.control.updateModel(M);
     }
 
 
@@ -104,9 +112,10 @@ class ViewManager{
     }
 
     showModel(M){
-        this.inputManger.renderModel(M);
+        //this.tableManager.renderModel(M);
         this.simManager.renderTape(M.tape);
         this.startInput.val(M.start);
+        this.textInputManager.renderModel(M);
     }
 
     getTape(){

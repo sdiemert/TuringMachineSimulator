@@ -10,7 +10,7 @@ class TuringMachine{
 
     constructor(){
         this.states = {};
-        this.tape = new Tape(); // TODO: make a new tape object here.
+        this.tape = new Tape();
         this.start = null;
     }
 
@@ -28,7 +28,6 @@ class TuringMachine{
         if(!this.states[name]){
             // not already in states list
             this.states[name] = S;
-
             return S;
         }else{
             return null;
@@ -49,13 +48,21 @@ class TuringMachine{
 
     _execute(S, viewCallback){
 
+        var next = null;
+
         if(!S){
             return null;
         }else{
 
+            console.log(S, this.states);
+
             S = this.states[S];
 
-            this.tape.doAction(S.write);
+            console.log(S);
+
+            next = S.getNext(this.tape.read());
+
+            this.tape.doAction(next[1]);
 
             var that = this;
 
@@ -63,15 +70,14 @@ class TuringMachine{
 
                 console.log(S.name, that.tape.toString());
 
-                if(S.move === "H"){
-                    console.log("halting");
+                if(next[2] === "H"){
+                    console.log("------ Halting ---------");
                     return;
                 }else{
-                    console.log("moving: ", S.move);
-                    that.tape.doAction(S.move);
+                    that.tape.doAction(next[2]);
                 }
 
-                return that._execute(S.getNext(that.tape.read()), viewCallback);
+                return that._execute(next[3], viewCallback);
 
             });
         }

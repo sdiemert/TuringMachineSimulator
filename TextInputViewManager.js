@@ -3,48 +3,51 @@
  * Created by sdiemert on 2017-02-12.
  */
 
-class TextInputViewManager{
+var InputManager = require("./InputManager").InputManager;
+
+class TextInputViewManager extends InputManager {
 
     /**
-     *
-     * @param onChangeCallback {function} called when the Input element is
-     *  changed and needs to update the model.
+     * Constructor for a text input field
      */
     constructor(){
-        this.textarea = $("#text-input");
-        this.wrapper = $("#text-input-wrapper");
-    }
+        super("json-input-wrapper");
+        this.textarea = $("#json-input");
 
-    show(){
-        this.wrapper.show();
-    }
 
-    hide(){
-        this.wrapper.hide();
     }
 
     /**
-     * Renders the TM to the text display using the toString for each
-     * state in the TM.
+     * Renders the TM to the textarea as a JSON string.
      *
      * @param M {TuringMachine}
      */
     renderModel(M){
-        this.textarea.empty();
-        var s = "";
-        for(var i in M.states){
-            if(!M.states.hasOwnProperty(i)) continue;
-            console.log(M.states[i]);
-            s += M.states[i].toString() + "\n";
+        var s = "{\n";
+        for(var k in M.states){
+            s += '\t"' + k + '" : { \n' ;
+            for(var c in M.states[k].trans){
+                s += '\t\t"' + c +'" : ' + JSON.stringify(M.states[k].trans[c]) + ',\n'
+            }
+            s = s.substring(0, s.length - 2) + "\n\t},\n";
         }
-        this.textarea.append(s);
+
+        s = s.substring(0, s.length - 2);
+
+        s += "\n}\n";
+
+        this.textarea.val(s);
     }
 
     /**
-     *
+     * Digests the input from the textarea (JSON) and
+     * passes it into a callback funciton.
      */
     digestMachine(cb){
 
+        console.log(this.textarea.val());
+
+        cb(JSON.parse(this.textarea.val()));
     }
 
 }

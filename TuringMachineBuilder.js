@@ -4,97 +4,35 @@
  */
 
 var TuringMachine = require("./TuringMachine").TuringMachine;
+var State = require("./State").State;
 
-function parse(S){
-    S = S.toUpperCase(); // first cast everything to upper case to avoid confusion.
+class TuringMachineBuilder{
 
-    S = S.split("\n");
-
-    var tm = new TuringMachine();
-
-    // Read the tape information
-    var tape_vals = [];
-    var tape_curr = -1;
-    var s = S[0].split(" ");
-    for(var c in s[0]){
-        tape_vals.push(s[0][c]);
+    constructor(){
+        // empty.
     }
-    tape_curr = parseInt(s[1]);
 
-    tm.setTape(tape_curr, tape_vals);
+    /**
+     * Receives a JSON description of the machine
+     * and then returns a new Model
+     * @param M {TuringMachine} a JSON description of the turing machine
+     */
+    build(M){
 
-    // Read the state information
+        console.log(M);
 
-    // read the top row
-    s = 2;
-    var row = null;
-    var relation = {};
-    var itemCount = 0;
-    var sname = null;
-    var saction = null;
-    while(S[s] != "----"){
-        row = S[s].split(" ");
-        console.log(S[s]);
-        relation = {};
-        itemCount = 0;
-        sname = null;
-        saction = null;
-        for(var r in row){
-            if(row[r] !== " " && row[r]){
+        var T = new TuringMachine();
 
-                var x = row[r].trim().trimLeft();
+        for(var s in M){
+            if(!M.hasOwnProperty(s)) continue;
 
-                if(itemCount === 0){
-                    sname = x;
-                }else if(itemCount === 1){
-                    saction = x;
-                }else if (itemCount === 2){
-                    if(x === "-"){
-                        relation['#'] = null;
-                    }else{
-                        relation['#'] = x;
-                    }
+            console.log(s);
 
-                }else if (itemCount === 3){
-                    if(x === "-"){
-                        relation['1'] = null;
-                    }else{
-                        relation['1'] = x;
-                    }
-                }else if (itemCount === 4){
-                    if(x === "-"){
-                        relation['0'] = null;
-                    }else{
-                        relation['0'] = x;
-                    }
-                }else {
-                    console.log("Error - unable to parse: " + row);
-                }
-                itemCount++;
-            }
+            T.addState(new State(s, M[s]));
         }
-        tm.addState(sname, saction, relation);
-
-        console.log(tm.toString());
-        s++;
+        return T;
     }
 
-    tm.start = S[s+1].trim().trimLeft();
-
-    return tm;
-
 }
 
-function parseFile(f){
-
-    /*var fs = require("fs");
-
-    var S = fs.readFileSync(f, 'utf-8');
-
-    */
-
-    return this.parse(S);
-}
-
-
-module.exports = {parse : parse};
+module.exports = {TuringMachineBuilder : TuringMachineBuilder};

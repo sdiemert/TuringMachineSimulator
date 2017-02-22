@@ -9,57 +9,34 @@ class State{
      * Creates a new state object
      *
      * @param name {string}
-     * @param move {string} L or R
-     * @param write {string} 1, O, or #
-     * @param next {object} - the next relation, keys are symbols, values are next state id's
+     * @param trans {object} - the transition relation {read : [(prob, write, move, next)]}
      */
-    constructor(name, move, write, next){
-
+    constructor(name, trans){
         this.name = name;
-        this.move = move;
-        this.write = write;
-        this.next = next;
-
+        this.trans = trans;
     }
 
     /**
      * @return {string}
      */
     toString(){
-        var ret = this.name +"\t"+this.write+ "\t" + this.move ;
-        var syms = ["1","0","#"];
-        for(var x in syms){
-
-            var n = syms[x];
-
-            if(!this.next[n]){
-                ret += "\t(null)"
-            }else{
-                ret += "\t(";
-                for(var s in this.next[n]){
-                    ret += "(" + s + "," + this.next[n][s].toFixed(1)+"),"
-                }
-                ret = ret.substring(0, ret.length-1);
-                ret += ")";
-            }
-
-        }
-
-        return ret;
+       return "State.toString() - FIXME";
     }
 
     /**
      * Gets the next state - uses next relation
-     * @param n {string} the input into the next relation
+     * @param read {string} the input into the next relation
+     *
+     * @return {Array} [prob, write, move, next_state]
      */
-    getNext(n){
-        return this.selectWithProbability(this.next[n]);
+    getNext(read){
+        return this.selectWithProbability(this.trans[read]);
     }
 
     selectWithProbability(R){
 
-        // R is an object with {"s1": p1, "s2":p2,...}
-        // we know that sum pi will be = 1.0
+        // R is an array of items [(p, w, m, s), ....]
+        // we know that sum of all p's will be 1.0
 
         // X is a random variable that may take
         // values s1, s2, ... si with probabilities
@@ -69,14 +46,12 @@ class State{
 
         var s = 0;
 
-        for(var k in R){
-            if(!R.hasOwnProperty(k)) continue;
-
-            if(r >= s && r < s + R[k]){
-                return k;
+        for(var i = 0; i < R.length; i++){
+           if(r >= s && r < s + R[i][0]){
+                return R[i]; // return the relation tuple
             }
 
-            s += R[k];
+            s += R[i][0];
         }
     }
 }
