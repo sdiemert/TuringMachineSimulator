@@ -19,15 +19,10 @@ class TuringMachineBuilder{
      */
     build(M){
 
-        console.log(M);
-
         var T = new TuringMachine();
 
         for(var s in M){
             if(!M.hasOwnProperty(s)) continue;
-
-            console.log(s);
-
             T.addState(new State(s, M[s]));
         }
         return T;

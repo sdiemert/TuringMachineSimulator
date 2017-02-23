@@ -12,6 +12,7 @@ class TuringMachine{
         this.states = {};
         this.tape = new Tape();
         this.start = null;
+        this.curr = null;
     }
 
     /**
@@ -22,8 +23,6 @@ class TuringMachine{
      */
     addState(S){
         var name = S.name;
-
-        console.log("adding state", name);
 
         if(!this.states[name]){
             // not already in states list
@@ -54,11 +53,9 @@ class TuringMachine{
             return null;
         }else{
 
-            console.log(S, this.states);
-
             S = this.states[S];
 
-            console.log(S);
+            this.curr = S;
 
             next = S.getNext(this.tape.read());
 
@@ -68,10 +65,7 @@ class TuringMachine{
 
             viewCallback(S.name, function(){
 
-                console.log(S.name, that.tape.toString());
-
                 if(next[2] === "H"){
-                    console.log("------ Halting ---------");
                     return;
                 }else{
                     that.tape.doAction(next[2]);
