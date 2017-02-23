@@ -55,13 +55,11 @@
 
                 <h5>Machine:</h5>
 
-                <div id="table-input-wrapper" style="overflow: scroll; max-height:400px; display:block;">
+                <div id="table-input-wrapper" style="overflow-y: scroll; max-height:500px; display:block;">
                     <table id="input-table">
                         <thead>
                             <tr>
                                 <th>State</th>
-                                <th>Write</th>
-                                <th>Move</th>
                                 <th>1</th>
                                 <th>0</th>
                                 <th>#</th>
@@ -71,11 +69,9 @@
                         <tbody id="input-table-body">
                             <tr id="input-row-0" class="input-row">
                                 <td><input type="text" id="input-id-0"/></td>
-                                <td><input type="text" id="input-write-0"/></td>
-                                <td><input type="text" id="input-move-0"/></td>
-                                <td><input class="next" type="text" id="input-next-one-0"/></td>
-                                <td><input class="next" type="text" id="input-next-zero-0"/></td>
-                                <td><input class="next" type="text" id="input-next-null-0"/></td>
+                                <td class="next"><input class="next" type="text" id="input-next-one-0"/></td>
+                                <td class="next"><input class="next" type="text" id="input-next-zero-0"/></td>
+                                <td class="next"><input class="next" type="text" id="input-next-null-0"/></td>
                                 <td><button>remove</button></td>
                             </tr>
                         </tbody>

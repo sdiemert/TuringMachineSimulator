@@ -24,8 +24,8 @@ class ViewManager{
         this.simManager       = new SimViewManager("sim-wrapper");
         this.textInputManager = new TextInputViewManager();
 
-        this.tableManager.hide();
-        this.textInputManager.show();
+        this.tableManager.show();
+        //this.textInputManager.show();
     }
 
 

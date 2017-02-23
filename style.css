@@ -1,10 +1,14 @@
 .input-row input {
-    width : 45px;
+    width : 60px;
     margin-bottom: 2px;
 }
 
 .input-row input.next {
     width : 100%;
+}
+
+.input-row td.next {
+    width : 30%;
 }
 
 .input-row td,
