@@ -78,6 +78,10 @@ class Controller{
         this.view.showModel(this.model);
     }
 
+    requestRefresh(){
+        this.showModel();
+    }
+
 }
 
 module.exports = {Controller : Controller};

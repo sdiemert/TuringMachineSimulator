@@ -49,6 +49,8 @@
             </div>
         </div>
 
+        <hr>
+
         <div class="row">
 
             <div class="ten columns offset-by-one">
@@ -67,31 +69,37 @@
                             </tr>
                         </thead>
                         <tbody id="input-table-body">
-                            <tr id="input-row-0" class="input-row">
+                            <!--<tr id="input-row-0" class="input-row">
                                 <td><input type="text" id="input-id-0"/></td>
                                 <td class="next"><input class="next" type="text" id="input-next-one-0"/></td>
                                 <td class="next"><input class="next" type="text" id="input-next-zero-0"/></td>
                                 <td class="next"><input class="next" type="text" id="input-next-null-0"/></td>
                                 <td><button>remove</button></td>
-                            </tr>
+                            </tr>-->
                         </tbody>
                     </table>
+
+                    <button id="add-row-button">Add</button>
+                    <button class="toggle-view-button">View</button>
                 </div>
 
                 <div id="json-input-wrapper">
                     <form>
                         <textarea id="json-input" style="font-size:10pt; width:95%; height:200px; font-family:'Courier New';"></textarea>
                     </form>
+
+                    <button class="toggle-view-button">View</button>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="ten columns offset-by-one">
-                    <h5>Trace:</h5>
-                    <form>
-                        <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
-                    </form>
-                </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="ten columns offset-by-one">
+                <h5>Trace:</h5>
+                <form>
+                    <textarea style="width:95%; height:200px; font-family:'Courier New';" id='text-output' disabled="disabled"></textarea>
+                </form>
             </div>
         </div>
     </div>

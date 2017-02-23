@@ -17,6 +17,7 @@ class ViewManager{
         this.executeButton = $("#execute-button");
         this.tapeInput = $("#tape-input");
         this.startInput = $("#start-state");
+        this.toggleView = $(".toggle-view-button");
 
         this.doBindings();
 
@@ -25,7 +26,7 @@ class ViewManager{
         this.textInputManager = new TextInputViewManager();
 
         this.tableManager.show();
-        //this.textInputManager.show();
+        this.textInputManager.hide();
     }
 
 
@@ -54,6 +55,7 @@ class ViewManager{
     doBindings(){
         this.executeButton.click(() => this.executeButtonHandler());
         this.tapeInput.blur(() => this.tapeInputHandler());
+        this.toggleView.click(() => this._toggleViewHandler());
     }
 
     /**
@@ -112,7 +114,7 @@ class ViewManager{
     }
 
     showModel(M){
-        //this.tableManager.renderModel(M);
+        this.tableManager.renderModel(M);
         this.simManager.renderTape(M.tape);
         this.startInput.val(M.start);
         this.textInputManager.renderModel(M);
@@ -125,6 +127,18 @@ class ViewManager{
         }else{
             return null;
         }
+    }
+
+    _toggleViewHandler(){
+        if(this.tableManager.isVisible()){
+            this.tableManager.hide();
+            this.textInputManager.show();
+        }else{
+            this.tableManager.show();
+            this.textInputManager.hide();
+        }
+
+        this.control.requestRefresh();
     }
 
 }
